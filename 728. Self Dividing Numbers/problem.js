@@ -33,7 +33,6 @@ The boundaries of each input argument are 1 <= left <= right <= 10000.
     }
     return array;
 };
-console.log(selfDividingNumbers(1,22));
 function isSeldDividing(number)
 {
     var result = true;
