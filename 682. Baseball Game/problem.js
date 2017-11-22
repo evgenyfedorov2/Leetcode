@@ -1,3 +1,5 @@
+/*
+
 You're now a baseball game point recorder.
 
 Given a list of strings, each string can be one of the 4 following types:
@@ -34,3 +36,31 @@ Round 7: You could get 9 + 5 = 14 points. The sum is 27.
 Note:
 The size of the input list will be between 1 and 1000.
 Every integer represented in the list will be between -30000 and 30000.
+
+*/
+
+/**
+ * @param {string[]} ops
+ * @return {number}
+ */
+var calPoints = function(ops) {
+    var stack = [];
+    for (var index = 0; index < ops.length; index++) {
+        switch (ops[index]) {
+            case "D":
+                stack.push(parseInt(stack[stack.length-1] * 2));
+                break;
+            case "C":
+                stack.pop();
+                break;
+            case "+":
+                stack.push(parseInt(stack[stack.length-1])+parseInt(stack[stack.length-2]));
+                break;
+            default:
+                stack.push(parseInt(ops[index]));
+                break;
+        }
+    }
+    return stack.reduce(function(a,b) { return a + b;});
+};
+console.log(calPoints(["5","-2","4","C","D","9","+","+"]));
