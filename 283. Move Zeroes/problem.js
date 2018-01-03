@@ -15,5 +15,12 @@ Minimize the total number of operations.
  * @return {void} Do not return anything, modify nums in-place instead.
  */
 var moveZeroes = function(nums) {
-    
+    for (var indexOfLastNonZero = 0, i = 0; i < nums.length; i++) {
+        if (nums[i] !== 0) {
+            temp = nums[indexOfLastNonZero];
+            nums[indexOfLastNonZero] = nums[i];
+            nums[i] = temp;
+            indexOfLastNonZero++;
+        }
+    }
 };
