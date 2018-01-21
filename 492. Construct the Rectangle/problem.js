@@ -28,5 +28,3 @@ var constructRectangle = function(area) {
     while (area % mid !== 0) { mid--; }
     return [area/mid, mid];
 };
-
-console.log(constructRectangle(4));
