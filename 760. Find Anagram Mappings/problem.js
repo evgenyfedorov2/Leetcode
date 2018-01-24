@@ -25,6 +25,6 @@ A[i], B[i] are integers in range [0, 10^5].
  */
 var anagramMappings = function(A, B) {
     const map = new Map();
-    B.forEach((item,i) => map.set (item,i));
+    B.forEach((item,i) => map.set(item,i));
     return A.map(item => map.get(item));
 };
