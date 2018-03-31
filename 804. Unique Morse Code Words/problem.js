@@ -29,3 +29,35 @@ Each words[i] will have length in range [1, 12].
 words[i] will only consist of lowercase letters.
 
 */
+
+/**
+ * @param {string[]} words
+ * @return {number}
+ */
+var uniqueMorseRepresentations = function(words) {
+    var morseCodes = [".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."];
+    var letters = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+    var dictAlphabet = {};
+    for (let i = 0; i < morseCodes.length; i++) {
+        dictAlphabet[letters[i]] = morseCodes[i];
+    }
+    var result = [];
+    words.forEach(word => {
+        let encodedWord = encode(word);
+        if (result.indexOf(encodedWord) < 0) {
+            result.push(encodedWord);
+        } 
+    
+    });
+    return result.length;
+    function encode(word) {
+        let result = [];
+        for (let index = 0; index < word.length; index++) {
+            result.push(dictAlphabet[word[index]]);
+        }
+        return result.join('');
+    }
+};
+
+var test = ["gin", "zen", "gig", "msg"];
+uniqueMorseRepresentations(test);
