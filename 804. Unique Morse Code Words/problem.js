@@ -35,29 +35,16 @@ words[i] will only consist of lowercase letters.
  * @return {number}
  */
 var uniqueMorseRepresentations = function(words) {
-    var morseCodes = [".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."];
-    var letters = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
-    var dictAlphabet = {};
-    for (let i = 0; i < morseCodes.length; i++) {
-        dictAlphabet[letters[i]] = morseCodes[i];
-    }
-    var result = [];
+    let morseCodes = [".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."];
+    let seen = new Set();
+    let aCode = 'a'.charCodeAt();
     words.forEach(word => {
-        let encodedWord = encode(word);
-        if (result.indexOf(encodedWord) < 0) {
-            result.push(encodedWord);
-        } 
-    
-    });
-    return result.length;
-    function encode(word) {
-        let result = [];
+        let encodedWord = [];
         for (let index = 0; index < word.length; index++) {
-            result.push(dictAlphabet[word[index]]);
+            encodedWord.push(morseCodes[word[index].charCodeAt() - aCode]);
         }
-        return result.join('');
-    }
+        encodedWord = encodedWord.join('');
+        seen.add(encodedWord);
+    });
+    return seen.size;
 };
-
-var test = ["gin", "zen", "gig", "msg"];
-uniqueMorseRepresentations(test);
