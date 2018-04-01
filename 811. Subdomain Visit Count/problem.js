@@ -36,9 +36,9 @@ The input count in any count-paired domain will not exceed 10000.
  * @return {string[]}
  */
 var subdomainVisits = function (cpdomains) {
-    let domains = [];
-    let result = [];
-    let helperSet = new Set();
+    let allDomains = [];
+    let formattedResult = [];
+    let uniqueDomains = new Set();
 
     function addToDict(array, property, amount) {
         if (array.hasOwnProperty(property)) {
@@ -54,13 +54,13 @@ var subdomainVisits = function (cpdomains) {
         let index = 0;
         do {
             index = domain.indexOf('.');
-            helperSet.add(domain);
-            addToDict(domains, domain, amount);
+            uniqueDomains.add(domain);
+            addToDict(allDomains, domain, amount);
             domain = domain.substring(index + 1);
         } while (index >= 0);
     });
-    for (let item of helperSet) {
-        result.push(domains[item] + ' ' + item);
+    for (let item of uniqueDomains) {
+        formattedResult.push(allDomains[item] + ' ' + item);
     }
-    return result;
+    return formattedResult;
 };
