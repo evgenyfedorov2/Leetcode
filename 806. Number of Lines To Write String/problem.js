@@ -41,6 +41,23 @@ widths[i] will be in the range of [2, 10].
  * @param {string} S
  * @return {number[]}
  */
-var numberOfLines = function(widths, S) {
-    
+var numberOfLines = function (widths, S) {
+    const stringCapacity = 100;
+    const ASCIIofa = 'a'.charCodeAt();
+    let currentSum = 0;
+    let currentWidth = 0;
+    let currentNumberOfLines = 1;
+    for (const letter of S) {
+        currentWidth = widths[letter.charCodeAt() - ASCIIofa];
+        currentSum += currentWidth;
+        if (currentSum > stringCapacity) {
+            currentSum = currentWidth;
+            currentNumberOfLines++;
+        }
+    }
+    return [currentNumberOfLines, currentSum];
 };
+
+let widths = [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10];
+let S = "abcdefghijklmnopqrstuvwxyz";
+console.log(numberOfLines(widths, S));
