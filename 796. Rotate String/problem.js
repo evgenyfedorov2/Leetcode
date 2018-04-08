@@ -22,6 +22,6 @@ A and B will have length at most 100.
  * @param {string} B
  * @return {boolean}
  */
-var rotateString = function(A, B) {
-    
+var rotateString = function (A, B) {
+    return (A.length === B.length) && ((A + A).indexOf(B) > -1);
 };
