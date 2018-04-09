@@ -22,6 +22,21 @@ Answers within 10^-6 of the true value will be accepted as correct.
  * @param {number[][]} points
  * @return {number}
  */
-var largestTriangleArea = function(points) {
-    
+var largestTriangleArea = function (points) {
+    let numPoints = points.length;
+    let result = 0;
+
+    function areaShoelace(x, y, z) {
+        const half = Number(0.5);
+        return half * Math.abs(x[0] * y[1] + y[0] * z[1] + z[0] * x[1] - x[1] * y[0] - y[1] * z[0] - z[1] * x[0]);
+    }
+
+    for (let i = 0; i < numPoints; i++) {
+        for (let j = i + 1; j < numPoints; j++) {
+            for (let k = j + 1; k < numPoints; k++) {
+                result = Math.max(result, areaShoelace(points[i], points[j], points[k]));
+            }
+        }
+    }
+    return result;
 };
