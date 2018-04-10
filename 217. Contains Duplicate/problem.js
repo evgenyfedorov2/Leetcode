@@ -8,6 +8,6 @@ Given an array of integers, find if the array contains any duplicates. Your func
  * @param {number[]} nums
  * @return {boolean}
  */
-var containsDuplicate = function(nums) {
-    
+var containsDuplicate = function (nums) {
+    return nums.length > (new Set(nums)).size;
 };
